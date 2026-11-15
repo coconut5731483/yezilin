@@ -759,7 +759,13 @@ body[data-page]:not([data-page="1"]) header .ch.cur::after{display:none!importan
 #ship .info li.lead{display:block;color:var(--hl);font-weight:700;font-family:var(--serif)}
 
 /* 品牌故事雞仔：以 transform 移動，減少捲動卡頓 */
-#swalk{top:0!important;left:0!important;will-change:transform}
+#swalk{top:-19px!important;left:0!important;will-change:transform}
+/* 雞仔上下移動交給瀏覽器 sticky（與捲動同步），JS 只調整左右位置與進度線 */
+#story .swW{position:sticky;top:45vh;top:45dvh;height:0;margin:-12px 0 12px -60px;z-index:2;pointer-events:none}
+#story .sclip{position:absolute;left:0;top:0;width:58px;overflow:hidden;pointer-events:none;will-change:transform;contain:layout paint}
+#story .sclip svg{position:absolute;left:0;top:0;overflow:visible;will-change:transform}
+#story .sst{will-change:opacity,transform}
+#story .sst.in{will-change:auto}
 
 /* 料理相簿：每類最後一排填滿 */
 #photos .jump{margin-right:0!important;top:calc(70px + env(safe-area-inset-top,0px))!important}
@@ -913,7 +919,7 @@ setTimeout(hide,4000);document.getElementById("skip").onclick=hide;})();</script
 <h2>我們的故事</h2>
 <p class="ssub">從山裡的一間餐廳，到一代代接續的餐桌</p>
 <p class="note" style="margin-top:2px">往下滑，跟著雞仔走一段椰子林的路</p>
-<div class="stl" id="stl"><svg class="sroad" id="sroad" aria-hidden="true"><path id="srBg" fill="none" stroke="rgba(200,170,114,.35)" stroke-width="9" stroke-linecap="round"/><path id="srDash" fill="none" stroke="rgba(242,230,204,.55)" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round"/><path id="srProg" fill="none" stroke="#E8CFA0" stroke-width="5" stroke-linecap="round"/></svg><div class="swalk" id="swalk"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#831C13" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M29.5 10.5q.5-3.2 2.6-1.4q1-3 3-.6q2.2-1.6 2.3 1.6"/><circle cx="33" cy="14" r="4.2"/><path d="M37 13.2l4 1.6l-4 1"/><path d="M34.6 18q.4 3.2-1.6 3.4"/><path d="M29.2 16.5C27 21 22.5 22.5 17 22.2C11.5 21.8 7.5 17.5 8 10"/><path d="M17 22.2C12.5 19 12 14 14.5 9.5"/><path d="M36.5 17.5C37.5 25 33 31.5 25 32C18.5 32.4 14.6 28 15.6 23"/><path d="M19 26c3.5-2.4 8-2 10.5 1"/><path d="M22.5 32v7.5l-3 2M22.5 39.5l3 2M27.5 31.5v8l3 2M27.5 39.5l-2.5 2"/></g><path d="M32.4 13.8q1.3 1 2.6 0" stroke="#831C13" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div></div>
+<div class="stl" id="stl"><svg class="sroad" id="sroad" aria-hidden="true"><path id="srBg" fill="none" stroke="rgba(200,170,114,.35)" stroke-width="9" stroke-linecap="round"/><path id="srDash" fill="none" stroke="rgba(242,230,204,.55)" stroke-width="2" stroke-dasharray="7 7" stroke-linecap="round"/></svg><div class="sclip" id="sclip"><svg class="sroad" id="sroad2" aria-hidden="true"><path id="srProg" fill="none" stroke="#E8CFA0" stroke-width="5" stroke-linecap="round"/></svg></div><div class="swW" id="swW"><div class="swalk" id="swalk"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#831C13" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M29.5 10.5q.5-3.2 2.6-1.4q1-3 3-.6q2.2-1.6 2.3 1.6"/><circle cx="33" cy="14" r="4.2"/><path d="M37 13.2l4 1.6l-4 1"/><path d="M34.6 18q.4 3.2-1.6 3.4"/><path d="M29.2 16.5C27 21 22.5 22.5 17 22.2C11.5 21.8 7.5 17.5 8 10"/><path d="M17 22.2C12.5 19 12 14 14.5 9.5"/><path d="M36.5 17.5C37.5 25 33 31.5 25 32C18.5 32.4 14.6 28 15.6 23"/><path d="M19 26c3.5-2.4 8-2 10.5 1"/><path d="M22.5 32v7.5l-3 2M22.5 39.5l3 2M27.5 31.5v8l3 2M27.5 39.5l-2.5 2"/></g><path d="M32.4 13.8q1.3 1 2.6 0" stroke="#831C13" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div></div></div>
 </section>
 </div>
 
@@ -1210,25 +1216,26 @@ function renderNews(){
 /* ---------- 品牌故事：長卷山路 ---------- */
 (function(){var SE=[{"ch": "第一章", "t": "1994–2013", "pl": "南化中坑・椰林中", "img": "舊址", "nm": "椰子林土雞城", "addr": "舊址：台南市南化區中坑里74之4號", "q": "一段美味的開始，一生難忘的回憶", "h": "椰林裡，種下一份餐飲夢", "ps": ["1994年，阿公<em>從建築業跨入餐飲</em>，在椰子樹林中，親手打造了「椰子林土雞城」。", "創業的路並不容易，但阿公抱著<em>自產自銷的理想</em>，一步一步，把心中的餐廳變成真實的模樣。", "早期來吃飯，得沿著<em>台20乙線的山路</em>彎彎繞繞，才能找到椰林裡的餐桌。", ">那段山路，是椰子林故事的起點；一頓帶著山野味的飯，是我們想留給鄉親的記憶。"]}, {"ch": "第二章", "t": "2013–2020", "pl": "左鎮化石館對面", "img": "舊址2", "nm": "椰子林美食餐廳", "addr": "舊址：台南市左鎮區榮和里62之29號", "q": "曾經於化石館對面的回憶，感謝您一路相伴", "h": "走過轉折，把故事繼續寫下去", "ps": ["一家餐廳的故事，除了開門迎客，也有<em>面對變化、重新出發</em>的時刻。", "椰子林一路經歷搬遷，曾在左鎮化石館對面落腳。", ">地點改變了，家族仍努力把餐廳經營下去，讓「椰子林」這個名字，繼續與鄉親的日常相連。", "我們珍惜的，是<em>每一次有人願意坐下來吃飯</em>，也是那份提醒自己繼續努力的心意。"]}, {"ch": "第三章", "t": "2020–現今", "pl": "左鎮里112-1號", "img": "現址", "nm": "椰子林土雞城", "addr": "現址：台南市左鎮區左鎮里112-1號", "q": "", "h": "第三代接續，讓古早味走進新的日常", "ps": ["走到今天，椰子林由<em>第三代</em>持續努力經營，在左鎮里112-1號，接續家族的餐飲故事。", "我們以<em>古早味與食材原味</em>為方向，希望用簡單、不過度調味的料理，", ">陪伴家人聚餐、朋友相聚，也成為旅途中可以坐下來吃頓飯的地方。"]}],END="鄉親，不論你記得的是<em>山裡的椰子林</em>，還是<em>最近才認識我們</em>，都歡迎來坐坐。<br>未來的故事，希望也有你一起參與。";
  $("stl").insertAdjacentHTML("beforeend",SE.map(function(e,i){
-  return'<div class="sst"><div class="syh"><span class="sch">'+e.ch+'</span><span class="syr">'+e.t+'</span></div><div class="sbox"><h3 class="ssh">'+e.h+'</h3><div class="spl">'+e.pl+'</div><figure class="sph"><button type="button" class="pic" data-s="'+i+'" aria-label="放大看'+e.nm+'照片"><img src="'+IMG[e.img]+'" alt="'+e.nm+'，'+e.t+'"></button><figcaption><b>'+e.nm+'</b><span>'+e.addr+'</span>'+(e.q?'<i>'+e.q+'</i>':'')+'</figcaption></figure>'+e.ps.map(function(p){return p[0]===">"?'<blockquote>'+p.slice(1)+'</blockquote>':'<p>'+p+'</p>'}).join("")+'</div></div>'}).join("")+'<div class="sst"><div class="send"><p>'+END+'</p></div></div>');
+  return'<div class="sst"><div class="syh"><span class="sch">'+e.ch+'</span><span class="syr">'+e.t+'</span></div><div class="sbox"><h3 class="ssh">'+e.h+'</h3><div class="spl">'+e.pl+'</div><figure class="sph"><button type="button" class="pic" data-s="'+i+'" aria-label="放大看'+e.nm+'照片"><img loading="lazy" decoding="async" src="'+IMG[e.img]+'" alt="'+e.nm+'，'+e.t+'"></button><figcaption><b>'+e.nm+'</b><span>'+e.addr+'</span>'+(e.q?'<i>'+e.q+'</i>':'')+'</figcaption></figure>'+e.ps.map(function(p){return p[0]===">"?'<blockquote>'+p.slice(1)+'</blockquote>':'<p>'+p+'</p>'}).join("")+'</div></div>'}).join("")+'<div class="sst"><div class="send"><p>'+END+'</p></div></div>');
  var list=SE.map(function(e){return[e.img,e.nm+'（'+e.t+'）']});
  $("stl").addEventListener("click",function(e){var b=e.target.closest(".pic[data-s]");if(b)openPh(list,+b.dataset.s)});
  try{var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting)x.target.classList.add("in")})},{threshold:.15});document.querySelectorAll("#stl .sst").forEach(function(x){io.observe(x)})}catch(err){document.querySelectorAll("#stl .sst").forEach(function(x){x.classList.add("in")})}
- var RL=0,P=$("srProg");
+ var RL=0,P=$("srProg"),CL=$("sclip"),S2=$("sroad2"),SWR=$("swW"),CS=$("sroad2");
  function build(){var tl=$("stl"),H=tl.offsetHeight;if(!H)return;var seg=170,d="M28 0",y=0,i=0;
   while(y<H){var y2=Math.min(H,y+seg),x=i%2?16:40;d+=" C"+x+" "+(y+(y2-y)*.3).toFixed(1)+" "+x+" "+(y+(y2-y)*.7).toFixed(1)+" 28 "+y2;y=y2;i++}
-  var sv=$("sroad");sv.setAttribute("viewBox","0 0 58 "+H);sv.setAttribute("height",H);["srBg","srDash","srProg"].forEach(function(k){$(k).setAttribute("d",d)});
-  RL=P.getTotalLength();P.style.strokeDasharray=RL;bw=innerWidth;bh=H;cache();walk()}
+  var sv=$("sroad");sv.setAttribute("viewBox","0 0 58 "+H);sv.setAttribute("height",H);S2.setAttribute("viewBox","0 0 58 "+H);S2.setAttribute("height",H);S2.setAttribute("width",58);CL.style.height=H+"px";["srBg","srDash","srProg"].forEach(function(k){$(k).setAttribute("d",d)});
+  RL=P.getTotalLength();bw=innerWidth;bh=H;cache();walk()}
  var PTS=[],lastU=-1,ticking=false,bw=0,bh=0,SW=$("swalk");
- function cache(){PTS=[];for(var k=0;k<=200;k++){var q=P.getPointAtLength(RL*k/200);PTS.push([q.x,q.y])}lastU=-1}
+ function cache(){PTS=[];for(var k=0;k<=240;k++){var q=P.getPointAtLength(RL*k/240);PTS.push([q.x,q.y])}lastU=-1}
+ function xAt(y){var lo=0,hi=PTS.length-1;while(hi-lo>1){var m=(lo+hi)>>1;if(PTS[m][1]<y)lo=m;else hi=m}var a=PTS[lo],b=PTS[hi],t=b[1]>a[1]?(y-a[1])/(b[1]-a[1]):0;t=Math.max(0,Math.min(1,t));return a[0]+(b[0]-a[0])*t}
  function walkNow(){ticking=false;if(!RL||page!==2)return;var r=$("stl").getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;
-  var u=Math.max(0,Math.min(1,(innerHeight*.45-r.top)/(r.height-40)));if(Math.abs(u-lastU)<.001)return;lastU=u;
-  var f=u*200,k=Math.floor(f),t=f-k,a=PTS[k]||PTS[200],b=PTS[Math.min(200,k+1)]||a,x=a[0]+(b[0]-a[0])*t,y=a[1]+(b[1]-a[1])*t;
-  SW.style.transform="translate3d("+(x-19)+"px,"+(y-19)+"px,0)";P.style.strokeDashoffset=RL*(1-u)}
+  var y=SWR.getBoundingClientRect().top-r.top;y=Math.max(0,Math.min(bh,y));if(Math.abs(y-lastU)<.5)return;lastU=y;
+  SW.style.transform="translate3d("+(xAt(y)-19)+"px,0,0)";
+  var R=Math.min(bh,y+14);CL.style.transform="translate3d(0,"+(R-bh)+"px,0)";S2.style.transform="translate3d(0,"+(bh-R)+"px,0)"}
  function walk(){if(!ticking){ticking=true;requestAnimationFrame(walkNow)}}
  addEventListener("scroll",walk,{passive:true});
  addEventListener("resize",function(){var tl=$("stl");if(!tl)return;var w=innerWidth,h=tl.offsetHeight;if(w===bw&&Math.abs(h-bh)<4)return;build()});
- document.querySelectorAll("#stl img").forEach(function(im){im.addEventListener("load",build)});
+ var bt=0;function buildLater(){clearTimeout(bt);bt=setTimeout(build,200)}document.querySelectorAll("#stl img").forEach(function(im){im.addEventListener("load",buildLater)});
  window.storyBuild=build;
 })();
 
