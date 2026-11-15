@@ -775,6 +775,14 @@ body[data-page]:not([data-page="1"]) header .ch.cur::after{display:none!importan
 /* 料理相簿分類按鈕：字放大 */
 #photos .jump{grid-template-columns:1fr 1.15fr 1fr 1.65fr!important}
 #photos .jump a{font-size:clamp(.92rem,4.2vw,1.08rem)!important;min-height:46px;line-height:46px!important;letter-spacing:.02em}
+#group .info{list-style:none;margin:12px 0 0!important;padding:4px 16px!important}
+#group .info li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;margin:0!important;border-bottom:1px dashed rgba(200,170,114,.45);line-height:1.6}
+#group .info li:last-child{border-bottom:0}
+#group .info li b{color:var(--hl);font-family:var(--serif);white-space:nowrap}
+#group .btns .btn{flex:1 1 140px}
+.itiles .tile.wide{grid-column:1/-1;flex-direction:row;justify-content:center;gap:12px;padding:14px 10px}
+.itiles .tile.wide .ti{flex:none}
+.itiles .tile.wide small{display:inline;margin-left:6px}
 </style>
 </head>
 <body data-page="1">
@@ -849,6 +857,7 @@ setTimeout(hide,4000);document.getElementById("skip").onclick=hide;})();</script
 <a href="#story" data-go="2"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v14"/></svg></span><span class="lb">品牌故事</span></a>
 <a href="#nav" data-go="6"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="lb">地圖導航</span></a>
 <a href="#menu" data-go="3"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 20h8"/><path d="M14 3l5 7"/><path d="M18 3l3 7"/></svg></span><span class="lb">單點及合菜</span></a>
+<a href="#group" data-go="3" data-to="group"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="13" rx="3"/><path d="M4 11h16"/><circle cx="8" cy="20" r="1.4"/><circle cx="16" cy="20" r="1.4"/><path d="M8 4v7M16 4v7"/></svg></span><span class="lb">團體・遊覽車</span></a>
 <a href="#ship" data-go="4"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/><path d="M7.5 5.5l9 5"/></svg></span><span class="lb">真空包預訂</span></a>
 <a href="#posts" data-go="5"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="1.5"/><path d="M20 15l-5-5-9 10"/></svg></span><span class="lb">社群圖文</span></a>
 <div class="ovc"><a href="tel:065731483">來電 06-5731483</a><a href="https://line.me/R/ti/p/%40999ziufj">LINE @999ziufj</a></div>
@@ -909,6 +918,7 @@ setTimeout(hide,4000);document.getElementById("skip").onclick=hide;})();</script
 <button type="button" class="tile" data-go="2"><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v14"/></svg></span><span>品牌故事</span><small>從中坑到左鎮</small></button>
 <button type="button" class="tile" data-go="3"><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 20h8"/><path d="M14 3l5 7"/><path d="M18 3l3 7"/></svg></span><span>單點及合菜</span><small>菜單・合菜・套餐</small></button>
 <button type="button" class="tile" data-go="4"><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/><path d="M7.5 5.5l9 5"/></svg></span><span>真空包預訂</span><small>宅配到府</small></button>
+<button type="button" class="tile wide" data-go="3" data-to="group"><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="13" rx="3"/><path d="M4 11h16"/><circle cx="8" cy="20" r="1.4"/><circle cx="16" cy="20" r="1.4"/><path d="M8 4v7M16 4v7"/></svg></span><span>團體與遊覽車用餐<small>可容納約 130～140 人</small></span></button>
 </div>
 </section>
 </div>
@@ -945,6 +955,21 @@ setTimeout(hide,4000);document.getElementById("skip").onclick=hide;})();</script
 <div class="cart" id="cart" hidden><div class="sm"><b id="cartN">想吃清單 0 道</b><small id="cartT"></small></div><button type="button" id="cartOpen">看清單</button></div>
 </section>
 
+
+<section id="group">
+<h2>團體與遊覽車用餐</h2>
+<p class="note" style="margin-top:0">旅行社、公司行號、親友聚會，歡迎鄉親來椰子林包桌聚餐 🐔</p>
+<ul class="info">
+<li><b>可容納</b><span>最多約 130～140 人</span></li>
+<li><b>停車</b><span>店內有寬敞停車場，遊覽車可停放</span></li>
+<li><b>餐點</b><span>合菜 NT$4,000～6,500；也可與店家討論其他用餐方案</span></li>
+<li><b>預約</b><span>團體用餐請提前來電或 LINE 預約</span></li>
+</ul>
+<div class="btns">
+<a class="btn" href="https://line.me/R/ti/p/%40999ziufj">LINE 洽詢團體</a>
+<a class="btn alt" href="tel:065731483">電話 06-5731483</a>
+</div>
+</section>
 
 <p class="note movednote">想看更多料理照片？　<a href="#photos" data-go="5" data-to="photos">料理相簿在社群圖文頁 →</a></p>
 </div>
