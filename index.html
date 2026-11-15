@@ -22,6 +22,38 @@
 <meta property="og:title" content="椰子林土雞城｜左鎮美食・土雞城・烤雞・合菜聚餐">
 <meta property="og:description" content="台南左鎮美食｜椰子林土雞城，1994年開業、第三代經營的左鎮土雞城，距左鎮化石園區開車約5分鐘。招牌白斬雞、烤雞、椰子雞湯與台式熱炒，另有4000～6500元合菜，適合家庭與團體聚餐。地址：台南市左鎮區左鎮里112-1號，電話06-5731483。">
 <meta property="og:locale" content="zh_TW">
+<!-- GA4 統計：評估 ID G-BSX6FN8BZK -->
+<script>
+(function(){
+  var GA_ID='G-BSX6FN8BZK';
+  var standalone=true;
+  try{standalone=(window.top===window.self)}catch(e){standalone=false}
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());
+  gtag('config',GA_ID);
+  if(standalone){
+    var s=document.createElement('script');s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+    document.head.appendChild(s);
+  }
+  function ev(name,p){
+    try{p=p||{};p.transport_type='beacon';gtag('event',name,p)}catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target;if(!t||!t.closest)return;
+    var page=document.body?(document.body.getAttribute('data-page')||''):'';
+    if(t.closest('#mbookBtn')){ev('view_onsite_menu',{link_text:'翻閱現場菜單',page_no:page});return}
+    var a=t.closest('a[href]');if(!a)return;
+    var h=a.getAttribute('href')||'';
+    var txt=(a.textContent||'').replace(/\s+/g,' ').trim().slice(0,30);
+    var p={link_text:txt,page_no:page};
+    if(h.indexOf('tel:')===0){ev('click_call',p)}
+    else if(h.indexOf('line.me')>-1){ev(a.id==='lineOrder'?'click_line_order':'click_line',p)}
+    else if(h.indexOf('maps.app.goo.gl')>-1||h.indexOf('google.com/maps')>-1){ev('click_navigate',p)}
+  },true);
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Restaurant", "name": "椰子林土雞城", "description": "台南左鎮的土雞城，距左鎮化石園區開車約5分鐘，招牌白斬雞、烤雞、椰子雞湯與台式熱炒，提供合菜與團體聚餐。", "telephone": "+886-6-5731483", "address": {"@type": "PostalAddress", "streetAddress": "左鎮里112-1號", "addressLocality": "左鎮區", "addressRegion": "台南市", "addressCountry": "TW"}, "servesCuisine": ["台灣料理", "土雞料理", "合菜"], "hasMap": "https://maps.app.goo.gl/TegQQnXR7YAGi2zU6?g_st=ic", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday"], "opens": "11:00", "closes": "14:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Thursday", "Friday"], "opens": "11:00", "closes": "14:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Thursday", "Friday"], "opens": "17:00", "closes": "19:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "11:00", "closes": "14:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "16:00", "closes": "19:30"}], "sameAs": ["https://www.facebook.com/share/1F2MWYNQMf/?mibextid=wwXIfr", "https://www.instagram.com/country_chicken_chen", "https://www.threads.com/@country_chicken_chen"], "url": "https://coconut5731483.github.io/yezilin/", "image": "https://coconut5731483.github.io/yezilin/og.jpg"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
