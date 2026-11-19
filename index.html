@@ -699,6 +699,8 @@ body[data-page="3"] #toast{bottom:calc(160px + env(safe-area-inset-bottom,0px))}
 .swap .chips i{font-style:normal;font-size:.88rem;background:#FAF5E9;border:1px solid #D9C49A;border-radius:999px;padding:2px 10px}
 .swap .sh2{margin-top:10px;font-size:.82rem;font-weight:700;color:var(--red)}
 .swap .chips.plus i{border-color:var(--red);color:var(--red)}
+.swap .chips i.p1{border-color:var(--red);color:var(--red)}
+.swap .chips i.p1 b{font-family:inherit;font-size:.8rem;margin-left:3px;color:var(--red)}
 
 .wall .wi{position:relative;border:1px solid var(--gold);border-radius:6px;overflow:hidden;background:var(--card)}
 .wall .wi:first-child{grid-column:1/-1}
@@ -1310,7 +1312,7 @@ function renderMenu(){
    h+=C.map(function(k){return'<div class="brow"><span class="n">'+k[0]+'<small>'+k[1]+'</small></span></div>'}).join("");
    h+='<div class="brow duo"><span class="n">雙人套餐 1000元<small>'+DUO.join("、")+'</small></span></div>';
    h+='<div class="cnote"><b>點餐須知</b><ul><li>白飯需另外單點</li><li>菜色依季節更換</li><li>換湯或換菜須補差額，不退差價</li></ul></div>';
-   h+='<div class="swap"><div class="sh"><b>湯品可更換</b><span>雙人套餐不適用</span></div><div class="chips">'+["椰子雞","鳳梨苦瓜雞","狗尾雞","筍角雞","客家酸菜雞","蒜頭雞","香菇雞","剝皮辣椒雞"].map(function(t){return"<i>"+t+"</i>"}).join("")+'</div><div class="sh2">加 100 元</div><div class="chips plus">'+["梅子雞","燒酒雞","羊肉火鍋"].map(function(t){return"<i>"+t+"</i>"}).join("")+'</div></div>';
+   h+='<div class="swap"><div class="sh"><b>湯品可更換</b><span>雙人套餐不適用</span></div><div class="chips">'+["椰子雞","鳳梨苦瓜雞","狗尾雞","筍角雞","客家酸菜雞","蒜頭雞","香菇雞","剝皮辣椒雞"].map(function(t){return"<i>"+t+"</i>"}).join("")+["梅子雞","燒酒雞","羊肉火鍋"].map(function(t){return'<i class="p1">'+t+'<b>＋100</b></i>'}).join("")+'</div></div>';
   }
   $("list").innerHTML=h;cartBar();
 }
